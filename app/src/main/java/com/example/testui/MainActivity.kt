@@ -26,12 +26,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        binding.Button.setOnClickListener{ onGetRandomImagePressed()}
+        binding.Button.setOnClickListener { onGetRandomImagePressed() }
 
-         }
+    }
 
-    private fun onGetRandomImagePressed():Boolean {
-
+    private fun onGetRandomImagePressed(): Boolean {
         val checkedId = binding.RadioGroup.checkedRadioButtonId
         val keyword = binding.RadioGroup.findViewById<RadioButton>(checkedId).text.toString()
         val encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.name())
@@ -41,11 +40,7 @@ class MainActivity : AppCompatActivity() {
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .placeholder(R.drawable.kandinsky_almond)
             .into(binding.ImageView)
+        return false
     }
 
-
-
-    }
-
-
-    }
+}
