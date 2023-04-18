@@ -25,8 +25,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.Button.setOnClickListener { onGetRandomImagePressed() }
+
+        binding.RadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            onGetRandomImagePressed()
+        }
 
     }
 
