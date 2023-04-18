@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Test UI</string>
+    <string name="random_number">Random number:</string>
+    <string name="carrot">Carrot</string>
+</resources>
