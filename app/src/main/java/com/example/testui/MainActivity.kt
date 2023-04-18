@@ -4,6 +4,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     //переменная на основе названия текущей активити
     lateinit var binding: ActivityMainBinding
-
+private var useKeyword: Boolean=false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -59,11 +60,22 @@ class MainActivity : AppCompatActivity() {
             }
             return@setOnEditorActionListener false
         }
+
+
+        //срабатывает только когда пользователь нажимает, но не реагирует на дефолтное значение
+        binding.CheckBox.setOnClickListener{
+            this.useKeyword=binding.CheckBox.isChecked
+            updateUI()
+        }
+        binding.CheckBox.setOnCheckedChangeListener { _, isChecked ->
+
+        }
+        updateUI()
          }
 
-    private fun onGetRandomImagePressed(): Boolean {
+    private fun onGetRandomImagePressed():Boolean {
         val keyword = binding.EditText.text.toString()
-        if (keyword.isBlank()){
+        if (useKeyword && keyword.isBlank()){
             binding.EditText.error = "Keyword is empty"
             return true
         }
@@ -80,6 +92,17 @@ class MainActivity : AppCompatActivity() {
         val number = Random.nextInt(100)
         val message = getString(R.string.random_number, number)
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        return true
+        return true //скрывать ли клавиатуру
     }
+    private fun updateUI()= with(binding){
+        CheckBox.isChecked = useKeyword
+        if (useKeyword) {
+            EditText.visibility = View.VISIBLE
+        }else{
+            EditText.visibility = View.GONE
+        }
+
+    }
+
+
     }
