@@ -76,8 +76,19 @@
             android:text="Water"
             />
 
-
     </RadioGroup>
+
+    <ProgressBar
+        android:id="@+id/ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/ImageView"
+        app:layout_constraintEnd_toEndOf="@id/ImageView"
+        app:layout_constraintTop_toTopOf="@id/ImageView"
+        app:layout_constraintBottom_toBottomOf="@id/ImageView"
+
+        />
 
 
 
